@@ -2,13 +2,51 @@ package lean.thread.dome0;
 
 /**
  * Title:
- * Description:
- *
- * @author kong
- * @version 1.0
- * @date 2018/4/12 15:11 首次创建
- * @date 2018/4/12 15:11  最后修改
- * @copyright 中科软科技股份有限公司
+ * Description:主线程的加载
  */
 public class thread04 {
+
+    public static void main(String[] args) {
+
+        for (int i = 0; i < 10; i++) {
+            Thread004 t = new Thread004();
+            t.start();
+        }
+
+        for (int i = 0; i < 10; i++) {
+            ThreadA t = new ThreadA();
+            Thread tt = new Thread(t);
+            tt.start();
+        }
+    }
+
+
+}
+
+
+class Thread004 extends Thread {
+    private static int indexNum = 0;
+
+    public Thread004() {
+        indexNum++;
+    }
+
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + "--" + indexNum);
+    }
+}
+
+class ThreadA implements Runnable {
+
+    private static int indexNum = 0;
+
+    public ThreadA() {
+        indexNum++;
+    }
+
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + "--" + indexNum);
+    }
 }
